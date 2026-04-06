@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "./Header.css";
 
-const Header = ({ currentRole, setCurrentRole }) => {
+const Header = ({ currentRole, setCurrentRole, toggleSidebar }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const roles = ["Admin", "Editor", "Viewer"];
 
   return (
     <header className="main-header">
       <div className="header-left">
+  
+        <button className="hamburger-btn" onClick={toggleSidebar}>
+          ☰
+        </button>
         <h2 className="brand-title">Zorvyn - FinTrack</h2>
       </div>
 
@@ -18,7 +22,6 @@ const Header = ({ currentRole, setCurrentRole }) => {
         >
           <div className="user-info">
             <span className="user-name">Archana</span>
-            {/* Uses the prop from App.jsx */}
             <span className="user-role">{currentRole}</span>
           </div>
           <div className="avatar">👤</div>
@@ -28,8 +31,9 @@ const Header = ({ currentRole, setCurrentRole }) => {
               {roles.map((r) => (
                 <li 
                   key={r} 
-                  onClick={() => {
-                    setCurrentRole(r); // Updates App.jsx state
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevents closing the dropdown too early
+                    setCurrentRole(r);
                     setShowDropdown(false);
                   }}
                 >

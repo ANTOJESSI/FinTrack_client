@@ -1,5 +1,7 @@
 .main-header {
   /* height: 70px; */
+  position: sticky;
+  top: 0;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -7,8 +9,7 @@
   /* padding: 0 30px; */
   padding: 10px 30px;
   border-bottom: 1px solid #e0e0e0;
-  position: sticky;
-  top: 0;
+  
   z-index: 100;
 }
 
@@ -29,10 +30,10 @@
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  position: relative; /* Crucial for the dropdown positioning */
+  position: relative; 
   padding: 5px 10px;
   border-radius: 8px;
-  /* transition: background 0.2s; */
+
 }
 
 .user-profile:hover {
@@ -84,5 +85,28 @@
 
 .role-dropdown li:hover {
   background-color: #f0f0f0;
-  color: #007bff; /* Highlight color */
+  color: #007bff; 
+}
+
+
+
+
+.hamburger-btn {
+  display: none; /* Hidden on big screens */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #1a1a1a;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: block; /* Shows only on mobile */
+  }
+  
+  .brand-title {
+    font-size: 1.2rem; 
+  }
 }

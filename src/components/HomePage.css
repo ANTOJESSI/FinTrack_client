@@ -19,12 +19,15 @@
 
 }
 
-.cards-placeholder{
-    margin: 20px 0;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
+
+
+.cards-placeholder {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 24px;
 }
 
 .homepage-outer-layout{
@@ -43,6 +46,13 @@
 
 }
 .charts-trends-div > div {
-    flex: 1; /* This makes both charts take up equal 50% space! */
-    min-width: 350px; /* Prevents them from getting too squished */
+    flex: 1; 
+    min-width: 350px;
+}
+
+.transaction-data{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
 }

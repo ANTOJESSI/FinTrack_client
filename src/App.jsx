@@ -8,22 +8,34 @@ import Header from "./components/Header";
 
 function App() {
   const [currentRole, setCurrentRole] = useState("Admin");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Mobile toggle state
   return (
     <>
-      <div className="app-wrapper">
-        <Sidebar />
+      <div className={`app-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         {/* <Header /> */}
         <main className="content-area">
-          <Header currentRole={currentRole} setCurrentRole={setCurrentRole} />
+          <Header
+            currentRole={currentRole}
+            setCurrentRole={setCurrentRole}
+            toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
           <Routes>
-           
-            <Route path="/" element={<HomePage currentRole={currentRole}/>} />
+            <Route path="/" element={<HomePage currentRole={currentRole} />} />
 
-           
-            <Route path="/transactions" element={<TransactionsPage currentRole={currentRole} />} />
-
-           
+            <Route
+              path="/transactions"
+              element={<TransactionsPage currentRole={currentRole} />}
+            />
           </Routes>
+
+          {/* Overlay to close sidebar when clicking outside on mobile */}
+          {isSidebarOpen && (
+            <div
+              className="sidebar-overlay"
+              onClick={() => setIsSidebarOpen(false)}
+            ></div>
+          )}
         </main>
       </div>
     </>

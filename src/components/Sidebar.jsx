@@ -1,37 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true); // Sidebar is open by default
+const Sidebar = ({ isOpen, setIsOpen }) => {
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
-    /* We add a dynamic class "collapsed" when isOpen is false */
-    <div className={`sidebar ${isOpen ? "open" : "collapsed"}`}>
+    /* Dynamic classes: 'open' for desktop logic, 'mobile-visible' for mobile logic */
+    <aside className={`sidebar ${isOpen ? "open mobile-visible" : "collapsed"}`}>
       <div className="sidebar-header">
         {isOpen && <div className="logo">FinTrack</div>}
-        <button className="toggle-btn" onClick={toggleSidebar}>
-          {/* These are the "three lines" (Hamburger icon) */}☰
+        
+        {/* Toggle button (Desktop) / Close button (Mobile) */}
+        <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? "×" : "☰"}
         </button>
       </div>
 
       <nav className="nav-menu">
-        <NavLink to="/" className="nav-item">
+        <NavLink to="/" className="nav-item" onClick={() => window.innerWidth < 768 && setIsOpen(false)}>
           <span className="icon">🏠</span>
-          {/* This text is conditionally rendered - it vanishes when collapsed */}
           {isOpen && <span className="label">Dashboard</span>}
         </NavLink>
 
-        <NavLink to="/transactions" className="nav-item">
+        <NavLink to="/transactions" className="nav-item" onClick={() => window.innerWidth < 768 && setIsOpen(false)}>
           <span className="icon">💸</span>
           {isOpen && <span className="label">Transactions</span>}
         </NavLink>
       </nav>
-    </div>
+    </aside>
   );
 };
 

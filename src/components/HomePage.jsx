@@ -7,9 +7,53 @@ import BalanceChart from "./Graph/BalanceChart";
 import SpendingPieChart from "./Graph/SpendingPieChart";
 import SpendingDonutChart from "./Graph/SpendingDonutChart";
 import TransactionsTable from "./Table/TransactionsTable";
+import Insights from "./Insights";
 
+const initialTransactions = [
+  {
+    id: 1,
+    date: "2026-04-05",
+    merchant: "Amazon",
+    category: "Shopping",
+    amount: 85.5,
+    type: "Expense",
+  },
+  {
+    id: 2,
+    date: "2026-04-04",
+    merchant: "Apple Music",
+    category: "Entertainment",
+    amount: 9.99,
+    type: "Expense",
+  },
+  {
+    id: 3,
+    date: "2026-04-04",
+    merchant: "Salary Deposit",
+    category: "Income",
+    amount: 3200.0,
+    type: "Income",
+  },
+  {
+    id: 4,
+    date: "2026-04-03",
+    merchant: "Zomato",
+    category: "Food",
+    amount: 24.2,
+    type: "Expense",
+  },
+  {
+    id: 5,
+    date: "2026-04-02",
+    merchant: "Shell Petrol",
+    category: "Transport",
+    amount: 55.0,
+    type: "Expense",
+  },
+];
 
 const HomePage = ({ currentRole }) => {
+  const [data, setData] = useState(initialTransactions);
   const cardData = [
     {
       id: 1,
@@ -62,19 +106,21 @@ const HomePage = ({ currentRole }) => {
           ))}
         </div>
         <div className="charts-trends-div">
-          <div >
+          <div>
             <BalanceChart />
           </div>
-          <div >
+          <div>
             {/* <SpendingPieChart /> */}
-            <SpendingDonutChart/>
+            <SpendingDonutChart />
           </div>
-          
         </div>
         {/* Transactions Table */}
-        <TransactionsTable currentRole={currentRole}/>
-
-
+        <div className="transaction-data">
+          <TransactionsTable currentRole={currentRole} />
+        <Insights data={data} />
+        
+        </div>
+        
       </div>
     </>
   );
