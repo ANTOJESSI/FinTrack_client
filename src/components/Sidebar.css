@@ -1,0 +1,83 @@
+.sidebar {
+  /* height: 100vh; */
+  background-color: #fff;
+  transition: width 0.3s ease;
+  border-right: 1px solid #e0e0e0; /* Optional: adds a nice divider */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* This prevents text from "peeking out" during animation */
+}
+
+/* Width when expanded */
+.sidebar.open {
+  width: 250px;
+  color: #000000;
+  background-color: #fff;
+
+  
+}
+
+/* Width when collapsed */
+.sidebar.collapsed {
+  width: 70px;
+  color: #000000;
+  background-color: #fff;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  /* height: 70px; */
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  /* padding: 20px 0;  */
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  /* color: white; */
+  color: #000000;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #000000;
+  /* gap: 15px;
+   */
+   justify-content: flex-start;
+
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  /* padding: 15px 0;  */
+  gap: 0;
+}
+
+.nav-item.active {
+  /* color: white; */
+  color: #767676;
+  background-color: #f0f0f0;
+  width: 100%;
+}
+
+.icon {
+  font-size: 20px;
+  
+}
+
+
+.label{
+    white-space: nowrap;
+}
